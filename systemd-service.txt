@@ -1,0 +1,14 @@
+[Unit]
+Description=Server Provisioning FastAPI App
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/opt/provisioning-api
+ExecStart=/opt/provisioning-api/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target
